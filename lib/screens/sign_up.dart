@@ -89,26 +89,20 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
     );
   }
 
-  Padding signup_buttom() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: custom_green,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: GestureDetector(
-          onTap: () {},
-          child: Text(
-            'Sign Up',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 23,
-            ),
-          ),
+  MaterialButton signup_buttom() {
+    return MaterialButton(
+      onPressed: () {},
+      color: custom_green,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+      ),
+      minWidth: 200, // Add this
+      child: Text(
+        'Sign Up',
+        style: TextStyle(
+            color: Colors.white,
+            fontSize: 23
         ),
       ),
     );

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:login_and_signup_pages/screens/home.dart';
 import 'package:login_and_signup_pages/screens/sign_up.dart';
+import 'package:login_and_signup_pages/screens/splashscreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/colors.dart';
 
 class LogIN_Screen extends StatefulWidget {
@@ -26,7 +29,6 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
       setState(() {});
     });
   }
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,10 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
           ),
           SizedBox(width: 5),
           GestureDetector(
-            onTap: () { Navigator.push( context,  MaterialPageRoute(builder: (context) => Sign_up_Screen()));},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => Sign_up_Screen()));
+            },
             child: Text(
               "Sign Up",
               style: TextStyle(
@@ -78,32 +83,30 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
     );
   }
 
-  Padding loginButton() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 15.0),
-      child: Container(
-        alignment: Alignment.center,
-        width: double.infinity,
-        height: 50,
-        decoration: BoxDecoration(
-          color: custom_green,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Text(
-            'Login',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 23,
-            ),
-          ),
-        ),
+  MaterialButton loginButton() {
+    return MaterialButton(
+      onPressed: () async {
+        final SharedPreferences log_pref =
+            await SharedPreferences.getInstance();
+        log_pref.setString("email", email.text);
+        var obtainedEmail = log_pref.getString('email');
+        finalEmail = obtainedEmail;
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyHomePage()));
+      },
+      color: custom_green,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      minWidth: 700,
+      child: Text(
+        'Login',
+        style: TextStyle(color: Colors.white, fontSize: 23),
+      ),
     );
   }
 
   Widget textfield_email(TextEditingController _controller,
-      FocusNode _focusNode,
-      String typename,
-      IconData iconss) {
+      FocusNode _focusNode, String typename, IconData iconss) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
@@ -118,9 +121,8 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
           decoration: InputDecoration(
             prefixIcon: Icon(iconss),
             prefixIconColor:
-            _focusNode.hasFocus ? custom_green : Color(0xffc5c5c5),
-            contentPadding:
-            EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                _focusNode.hasFocus ? custom_green : Color(0xffc5c5c5),
+            contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             hintText: typename,
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -150,9 +152,11 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
         height: 400,
         decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/Login-amico_min.png'), fit: BoxFit.contain, colorFilter: ColorFilter.mode(Colors.grey.shade100,BlendMode.modulate),
-
-            ) ),
+          image: AssetImage('images/Login-amico_min.png'),
+          fit: BoxFit.contain,
+          colorFilter:
+              ColorFilter.mode(Colors.grey.shade100, BlendMode.modulate),
+        )),
       ),
     );
   }
