@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:login_and_signup_pages/screens/home.dart';
 import 'package:login_and_signup_pages/screens/login.dart';
+import 'package:login_and_signup_pages/services/preferences.service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 String? finalEmail;
 
@@ -26,8 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future getValidationData() async {
-    final SharedPreferences log_pref = await SharedPreferences.getInstance();
-    var obtainedEmail = log_pref.getString('email');
+    PrefrencesService.logpref= await SharedPreferences.getInstance();
+    var obtainedEmail =   PrefrencesService.logpref?.getString('email');
     finalEmail = obtainedEmail;
     print(finalEmail);
   }
