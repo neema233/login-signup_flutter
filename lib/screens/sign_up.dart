@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../constant/colors.dart';
 import 'login.dart';
 
-
 class Sign_up_Screen extends StatefulWidget {
   const Sign_up_Screen({Key? key}) : super(key: key);
 
@@ -33,7 +32,6 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
       setState(() {});
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +73,10 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
           ),
           SizedBox(width: 5),
           GestureDetector(
-            onTap: () { Navigator.push( context,  MaterialPageRoute(builder: (context) => LogIN_Screen()));},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => LogIN_Screen()));
+            },
             child: Text(
               "Login",
               style: TextStyle(
@@ -94,25 +95,17 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
       onPressed: () {},
       color: custom_green,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       minWidth: 200, // Add this
       child: Text(
         'Sign Up',
-        style: TextStyle(
-            color: Colors.white,
-            fontSize: 23
-        ),
+        style: TextStyle(color: Colors.white, fontSize: 23),
       ),
     );
   }
 
-  Widget textfield_email(
-      TextEditingController _controller,
-      FocusNode _focusNode,
-      String typename,
-      IconData iconss) {
+  Widget textfield_email(TextEditingController _controller,
+      FocusNode _focusNode, String typename, IconData iconss) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15.0),
       child: Container(
@@ -126,7 +119,8 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
           style: TextStyle(fontSize: 18, color: Colors.black),
           decoration: InputDecoration(
             prefixIcon: Icon(iconss),
-            prefixIconColor: _focusNode.hasFocus ? custom_green : Color(0xffc5c5c5),
+            prefixIconColor:
+                _focusNode.hasFocus ? custom_green : Color(0xffc5c5c5),
             contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
             hintText: typename,
             enabledBorder: OutlineInputBorder(
@@ -136,15 +130,14 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
                 width: 2.0,
               ),
             ),
-            focusedBorder:OutlineInputBorder(
-              borderRadius:BorderRadius .circular(10),
-              borderSide: BorderSide(
-                  color:custom_green,
-                  width: 2.0
-              ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: BorderSide(color: custom_green, width: 2.0),
             ),
-          ),),
-      ),);
+          ),
+        ),
+      ),
+    );
   }
 
   Padding image() {
@@ -153,10 +146,14 @@ class _Sign_up_ScreenState extends State<Sign_up_Screen> {
       child: Container(
         alignment: Alignment.center,
         width: 400,
-        height:370 ,
+        height: 370,
         decoration: BoxDecoration(
-            image: DecorationImage(image:AssetImage('images/sig_up-min.jpg'),fit: BoxFit.contain,colorFilter: ColorFilter.mode(Colors.grey.shade100,BlendMode.modulate),)
-        ),
+            image: DecorationImage(
+          image: AssetImage('images/sig_up-min.jpg'),
+          fit: BoxFit.contain,
+          colorFilter:
+              ColorFilter.mode(Colors.grey.shade100, BlendMode.modulate),
+        )),
       ),
     );
   }

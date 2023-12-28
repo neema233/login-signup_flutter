@@ -3,7 +3,6 @@ import 'package:login_and_signup_pages/screens/home.dart';
 import 'package:login_and_signup_pages/screens/sign_up.dart';
 import 'package:login_and_signup_pages/screens/splashscreen.dart';
 import 'package:login_and_signup_pages/services/preferences.service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/colors.dart';
 
 class LogIN_Screen extends StatefulWidget {
@@ -87,12 +86,10 @@ class _LogIN_ScreenState extends State<LogIN_Screen> {
   MaterialButton loginButton() {
     return MaterialButton(
       onPressed: () async {
-       PrefrencesService.logpref=
-            await SharedPreferences.getInstance();
         PrefrencesService.logpref?.setString('email', email.text);
         var obtainedEmail = PrefrencesService.logpref?.getString('email');
         finalEmail = obtainedEmail;
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => MyHomePage()));
       },
       color: custom_green,

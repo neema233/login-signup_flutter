@@ -4,8 +4,8 @@ import 'package:login_and_signup_pages/screens/login.dart';
 import 'package:login_and_signup_pages/services/preferences.service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 String? finalEmail;
+int x = 0;
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     getValidationData().whenComplete(() async {
       Future.delayed(
           Duration(seconds: 3),
-          () => Navigator.push(
+          () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) =>
@@ -28,8 +28,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future getValidationData() async {
-    PrefrencesService.logpref= await SharedPreferences.getInstance();
-    var obtainedEmail =   PrefrencesService.logpref?.getString('email');
+    PrefrencesService.logpref = await SharedPreferences.getInstance();
+    var obtainedEmail = PrefrencesService.logpref?.getString('email');
     finalEmail = obtainedEmail;
     print(finalEmail);
   }
